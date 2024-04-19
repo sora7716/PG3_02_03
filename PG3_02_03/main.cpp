@@ -2,20 +2,20 @@
 #include <stdlib.h>
 #include <time.h>
 #include <Windows.h>
-typedef void (*PFunc)(int *);//関数ポインタ
+typedef void (*PFunc)();//関数ポインタ
 
-void Correct(int *num) {
-	printf("%dで正解\n",*num);
+void Correct() {
+	printf("正解\n");
 }
 
-void Incorrect(int *num) {
-	printf("%dで不正解\n",*num);
+void Incorrect() {
+	printf("不正解\n");
 }
 
 //コールバック関数
-void SetTimeout(PFunc p, int second,int num) {
+void SetTimeout(PFunc p, int second) {
 	Sleep(second * 1000);
-	p(&num);
+	p();
 }
 
 int main() {
@@ -38,7 +38,7 @@ int main() {
 	}
 	//サイコロの目と予想される数が同じか↑
 
-	SetTimeout(text, 3,num);//3秒後に結果を表示
+	SetTimeout(text, 3);//3秒後に結果を表示
 	return 0;
 }
 
